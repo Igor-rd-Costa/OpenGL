@@ -16,6 +16,11 @@ namespace Core {
 
 	Light::~Light()
 	{
+
+	}
+
+	void Light::Erase()
+	{
 		delete Renderer::m_Lights[m_Index];
 		Renderer::m_Lights.erase(Renderer::m_Lights.begin() + m_Index);
 	}
@@ -55,9 +60,8 @@ namespace Core {
 
 	DirectionalLight::~DirectionalLight() {}
 
-	void DirectionalLight::SetUniforms(ShaderProgram* shader)
+	void DirectionalLight::SetUniforms()
 	{
-		if (shader == nullptr) {
 			Renderer::EntityShader->Bind();
 			Renderer::EntityShader->SetUniform1i("dirLight.on", 1);
 			Renderer::EntityShader->SetUniform3f("dirLight.direction", this->m_Direction);
@@ -67,7 +71,6 @@ namespace Core {
 
 			Renderer::LightShader->Bind();
 			Renderer::LightShader->SetUniform1i("dirLight.visible", 0);
-		}
 	}
 
 	void DirectionalLight::Toggle()
@@ -85,9 +88,8 @@ namespace Core {
 
 	PointLight::~PointLight() {}
 
-	void PointLight::SetUniforms(ShaderProgram* shader)
+	void PointLight::SetUniforms()
 	{
-		if (shader == nullptr) {
 			Renderer::EntityShader->Bind();
 			Renderer::EntityShader->SetUniform1i("pointLight.on", 1);
 			Renderer::EntityShader->SetUniform3f("pointLight.position", this->m_Position);
@@ -100,8 +102,6 @@ namespace Core {
 
 			Renderer::LightShader->Bind();
 			Renderer::LightShader->SetUniform1i("pointLight.visible", 1);
-		}
-		
 	}
 
 	void PointLight::Toggle()
@@ -120,7 +120,7 @@ namespace Core {
 
 	SpotLight::~SpotLight() {}
 
-	void SpotLight::SetUniforms(ShaderProgram* shader)
+	void SpotLight::SetUniforms()
 	{
 		Renderer::EntityShader->Bind();
 		Renderer::EntityShader->SetUniform1i("spotLight.on", 1);

@@ -20,12 +20,13 @@ namespace Core
 		void SetSpecular(const std::string& specularPath);
 		void SetShininess(float shininess);
 		void SetColor(glm::vec3 color);
+		void Erase();
 		virtual void Toggle() = 0;
-		virtual void SetUniforms(ShaderProgram* shader = nullptr) = 0;
+		virtual void SetUniforms() = 0;
+		virtual ~Light();
 	protected:
 		uint32_t m_Index;
 		Light(glm::vec3 position = {0.0f, 0.0f, 0.0f});
-		virtual ~Light();
 	};
 
 
@@ -36,7 +37,7 @@ namespace Core
 		
 	public:
 		DirectionalLight(glm::vec3 position = { 0.0f, 0.0f, 0.0f });
-		void SetUniforms(ShaderProgram* shader = nullptr) override;
+		void SetUniforms() override;
 		void Toggle() override;
 		~DirectionalLight();
 
@@ -53,7 +54,7 @@ namespace Core
 
 	public:
 		PointLight(glm::vec3 position = { 0.0f, 0.0f, 0.0f });
-		void SetUniforms(ShaderProgram* shader = nullptr) override;
+		void SetUniforms() override;
 		void Toggle() override;
 		~PointLight();
 	};
@@ -72,7 +73,7 @@ namespace Core
 	public:
 		SpotLight(glm::vec3 position = { 0.0f, 0.0f, 0.0f }, glm::vec3 direction = {0.0f, -1.0f, 0.0f});
 		void UpdatePosition(PerspectiveCamera* camera);
-		void SetUniforms(ShaderProgram* shader = nullptr) override;
+		void SetUniforms() override;
 		void Toggle() override;
 		~SpotLight();
 	};

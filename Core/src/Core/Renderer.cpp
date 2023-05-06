@@ -40,6 +40,13 @@ namespace Core {
 			}
 			m_Primitives.clear();
 		}
+
+		if (!m_Lights.empty()) {
+			for (Light* light : m_Lights) {
+				delete light;
+			}
+		}
+
 		delete CubeMesh;
 		delete PyramidMesh;
 	}
