@@ -14,19 +14,12 @@ LightingScene::LightingScene(const Core::WindowInfo& windowInfo)
 	
 	spotLight = new SpotLight();
 	spotLight->Translate({ 1.0f, 0.0f, 0.0f });
-#ifdef _DEBUG
+
 	pointLight->SetTexture("src/Textures/DefaultTexture.png");
 	pointLight->SetSpecular("src/Textures/DefaultSpecular.png");
 	ContainerTex = new Texture("src/Textures/container2.png");
 	ContainerSpec = new Texture("src/Textures/container2_specular.png");
-#endif
-#ifdef NDEBUG
-	pointLight->SetTexture("Textures/DefaultTexture.png");
-	pointLight->SetSpecular("Textures/DefaultSpecular.png");
-	ContainerTex = new Texture("Textures/container2.png");
-	ContainerSpec = new Texture("Textures/container2_specular.png");
-#endif
-	
+
 	pointLight->SetUniforms();
 	dirLight->SetUniforms();
 	spotLight->SetUniforms();
