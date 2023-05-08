@@ -25,6 +25,7 @@ public:
 
 protected:
 private:
+        static int maxUniformBufferBindings;
 	static glm::mat4 ProjMatrix;
 	static Mesh* CubeMesh;
 	static Mesh* PyramidMesh;
