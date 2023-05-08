@@ -161,6 +161,17 @@ void ShaderProgram::SetUniform1iv(const std::string& Name, int Count, int* Value
 	glUniform1iv(GetUniformLocation(Name), Count, Value);
 }
 
+int32_t ShaderProgram::GetUniformBindingPoint()
+{
+for (int x= 0; x < UsedBindingPoints.size(); x++) {
+if(UsedBindingPoints[x] == -1) {
+UsedBindingPoints[x] = x;
+return x;
+}
+}
+return -1;
+}
+
 int ShaderProgram::GetUniformLocation(const std::string& Name) const
 {
 	if (m_UniformLacationCache.find(Name) != m_UniformLacationCache.end())
