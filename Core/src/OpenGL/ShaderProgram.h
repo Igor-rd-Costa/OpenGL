@@ -41,6 +41,7 @@ public:
 	uint32_t m_ProgramID;
 private:
 	ShaderIDs m_Shaders;
+std::array<uint32_t, Renderer::maxUniformBufferBindings> BindingPoints;
 	mutable std::unordered_map<std::string, int> m_UniformLacationCache;
 };
 
