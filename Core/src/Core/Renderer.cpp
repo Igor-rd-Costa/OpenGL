@@ -24,7 +24,7 @@ namespace Core {
 		EntityShader = std::make_unique<ShaderProgram>("../Core/src/OpenGL/Shaders/MultipleLightsVertex.glsl", "../Core/src/OpenGL/Shaders/MultipleLightsFragment.glsl");
 		LightShader = std::make_unique<ShaderProgram>("../Core/src/OpenGL/Shaders/LightSourceVertex.glsl", "../Core/src/OpenGL/Shaders/LightSourceFragment.glsl");
 
-  glGetIntegerv(GL_MAX_UNIFORM_BUFFER_BINDINGS, &Renderer::maxUniformBufferBindings);
+      glGetIntegerv(GL_MAX_UNIFORM_BUFFER_BINDINGS, &Renderer::maxUniformBufferBindings);
 		
 EntityShader->Bind();
 		EntityShader->SetUniform1i("material.diffuse", 0);
