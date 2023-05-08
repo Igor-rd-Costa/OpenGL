@@ -13,6 +13,7 @@ namespace Core {
 	std::unique_ptr<ShaderProgram> Renderer::EntityShader;
 	std::unique_ptr<ShaderProgram> Renderer::LightShader;
 	glm::mat4 Renderer::ProjMatrix;
+ int Renderer::maxUniformBufferBindings;
 
 	void Renderer::Init(Window* mainWindow)
 	{
@@ -23,7 +24,10 @@ namespace Core {
 		EntityShader = std::make_unique<ShaderProgram>("../Core/src/OpenGL/Shaders/MultipleLightsVertex.glsl", "../Core/src/OpenGL/Shaders/MultipleLightsFragment.glsl");
 		LightShader = std::make_unique<ShaderProgram>("../Core/src/OpenGL/Shaders/LightSourceVertex.glsl", "../Core/src/OpenGL/Shaders/LightSourceFragment.glsl");
 
-		EntityShader->Bind();
+
+glGetIntegerv(GL_MAX_UNIFORM_BUFFER_BINDINGS, &Renderer::maxUniformBufferBindings);
+		
+EntityShader->Bind();
 		EntityShader->SetUniform1i("material.diffuse", 0);
 		EntityShader->SetUniform1i("material.specular", 1);
 		EntityShader->SetUniformMat4f("ProjMatrix", ProjMatrix);
