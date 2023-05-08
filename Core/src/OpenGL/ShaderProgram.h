@@ -3,7 +3,6 @@
 #include <unordered_map>
 #include "glm/glm.hpp"
 
-//typedef unsigned int GLenum;
 namespace Core {
 
 struct ShaderIDs
