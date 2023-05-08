@@ -6,7 +6,6 @@
 #include "PerspectiveCamera.h"
 namespace Core {
 
-hhh
 	Mesh* Renderer::CubeMesh;
 	Mesh* Renderer::PyramidMesh;
 	std::vector<Entity*> Renderer::m_Primitives;
