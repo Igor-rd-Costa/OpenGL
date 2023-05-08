@@ -27,6 +27,7 @@ ShaderProgram::ShaderProgram()
 	:m_Shaders({ 0, 0 })
 {
 	m_ProgramID = glCreateProgram();
+BindingPoints.fill(-1);
 }
 
 ShaderProgram::~ShaderProgram()
@@ -37,6 +38,7 @@ ShaderProgram::~ShaderProgram()
 ShaderProgram::ShaderProgram(const std::string& VertexSource, const std::string& FragmentSource)
 {
 	m_ProgramID = glCreateProgram();
+BindingPoints.fill(-1);
 	if (AttachShader(VertexSource, GL_VERTEX_SHADER) && AttachShader(FragmentSource, GL_FRAGMENT_SHADER))
 	{
 		this->Link();
