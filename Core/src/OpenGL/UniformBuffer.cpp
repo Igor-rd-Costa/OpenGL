@@ -3,14 +3,11 @@
 
 namespace Core {
 
-UniformBuffer::UniformBuffer()
+UniformBuffer::UniformBuffer(void* dataStruct)
 {
 glCreateBuffer(1, &m_Id);
-gl_NamedBufferData(m_Id, size, nullptr, GL_DYNAMIC_DRAW);
-
-
+ gl_NamedBufferData(m_Id, size, dataStruct, GL_DYNAMIC_DRAW);
 }
-
 
 
 
