@@ -11,7 +11,7 @@ namespace Core {
     
 	void UniformBuffer::Bind(uint32_t index)
 	{
-
+		glBindBufferBase(GL_UNIFORM_BUFFER, index, m_Id);
 	}
 	
 	
