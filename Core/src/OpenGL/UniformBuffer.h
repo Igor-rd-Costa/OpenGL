@@ -17,4 +17,5 @@ class UniformBuffer {
 	private:
 	uint32_t m_Id;
 	static uint32_t s_MaxUniformBufferBindings;
+	static uint32_t s_BoundBuffers;
 }
