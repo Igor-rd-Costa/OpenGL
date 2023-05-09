@@ -11,7 +11,7 @@ namespace Core {
 		glNamedBufferStorage(m_Id, size, dataStruct, GL_DYNAMIC_STORAGE_BIT);
 	}
     
-	void UniformBuffer::Bind(uint32_t index)
+	void UniformBuffer::Bind(uint32_t index) const
 	{
 		if(s_BoundBuffers < s_MaxUniformBufferBindings) {
 			glBindBufferBase(GL_UNIFORM_BUFFER, index, m_Id); 
@@ -21,7 +21,8 @@ namespace Core {
 	}
 	
 
-	void UniformBuffer::Link(uint32_t programId, const std::string& uniform) { 
+	void UniformBuffer::Link(uint32_t programId, const std::string& uniformBlock) const
+	{
 		uint32_t blockIndex = glGetUniformBlockIndex(shaderId, uniform);
 		glUniformBlockBinding(programId, blockIndex, m_BindingPoint);
 	}
