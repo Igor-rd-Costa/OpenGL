@@ -2,6 +2,8 @@
 #include <glew.h>
 
 namespace Core {
+	uint32_t UniformBuffer::s_MaxUniformBufferBindings;
+	uint32_t UniformBuffer::s_BoundBuffers;
 
 	UniformBuffer::UniformBuffer(void* dataStruct)
 	{
@@ -11,7 +13,10 @@ namespace Core {
     
 	void UniformBuffer::Bind(uint32_t index)
 	{
-		glBindBufferBase(GL_UNIFORM_BUFFER, index, m_Id);
+		if(s_BoundBuffers < s_MaxUniformBufferBindings) {
+			glBindBufferBase(GL_UNIFORM_BUFFER, index, m_Id); 
+			s_BoundBuffers++;
+		}
 	}
 	
 	
