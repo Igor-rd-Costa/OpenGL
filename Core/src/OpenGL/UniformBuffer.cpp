@@ -8,7 +8,7 @@ namespace Core {
 	UniformBuffer::UniformBuffer(void* dataStruct)
 	{
 		glCreateBuffer(1, &m_Id);
-		gl_NamedBufferData(m_Id, size, dataStruct, GL_DYNAMIC_DRAW);
+		glNamedBufferStorage(m_Id, size, dataStruct, GL_DYNAMIC_STORAGE_BIT);
 	}
     
 	void UniformBuffer::Bind(uint32_t index)
@@ -16,14 +16,20 @@ namespace Core {
 		if(s_BoundBuffers < s_MaxUniformBufferBindings) {
 			glBindBufferBase(GL_UNIFORM_BUFFER, index, m_Id); 
 			s_BoundBuffers++;
+			m_BindingPoint = index;
 		}
 	}
 	
+
+	void UniformBuffer::Link(uint32_t programId, const std::string& uniform) { 
+		uint32_t blockIndex = glGetUniformBlockIndex(shaderId, uniform);
+		glUniformBlockBinding(programId, blockIndex, m_BindingPoint);
+	}
 	
     template<>
-    void UniformBuffer::SetData<glm::vec3>(glm::vec3 data)
+    void UniformBuffer::SetData<glm::vec3>(const std::string& uniform, glm::vec3 data)
 	{
-		
+
 		
 		
 	}
