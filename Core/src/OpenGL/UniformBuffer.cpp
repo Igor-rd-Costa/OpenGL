@@ -27,12 +27,17 @@ namespace Core {
 		glUniformBlockBinding(programId, blockIndex, m_BindingPoint);
 	}
 	
-    template<>
-    void UniformBuffer::SetData<glm::vec3>(const std::string& uniform, glm::vec3 data)
+	template<>
+	void UniformBuffer::SetData<glm::vec3>(uint32_t programId, const std::string& uniform, glm::vec3 data)
 	{
-
-		
-		
+		uint32_t offset;
+		uint32_t index = m_UniformCache.find(uniform);
+		if(index == m_UniformCache.end()) {
+			index = glGetUniformLocation(programId, uniform);
+			m_UniformCache.insert({uniform, index});
+		}
+		glGetActiveUniformsiv(programId, 1, index, GL_UNIFORM_OFFSET, &offset);
+		glNamedBufferSubData(m_Id, offset, sizeof(glm::vec3), &data);
 	}
 
 
