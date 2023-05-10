@@ -8,7 +8,7 @@ namespace Core {
 	UniformBuffer::UniformBuffer(void* dataStruct)
 	{
 		glCreateBuffer(1, &m_Id);
-		glNamedBufferStorage(m_Id, size, dataStruct, GL_DYNAMIC_STORAGE_BIT);
+		glNamedBufferStorage(m_Id, sizeof(dataStruct), dataStruct, GL_DYNAMIC_STORAGE_BIT);
 	}
     
 	void UniformBuffer::Bind(uint32_t index) const
