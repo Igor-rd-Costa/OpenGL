@@ -2,6 +2,7 @@
 
 #include <cstdint>
 #include <string>
+#include <unordered_map>
 
 namespace Core {
 
@@ -19,6 +20,7 @@ class UniformBuffer {
 	private:
 	uint32_t m_Id;
 	uint32_t m_BindingPoint;
+	std::unordered_map<std::string, uint32_t> m_UniformCache;
 	static uint32_t s_MaxUniformBufferBindings;
 	static uint32_t s_BoundBuffers;
 }
