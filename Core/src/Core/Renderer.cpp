@@ -4,7 +4,7 @@
 #include <iostream>
 #include "Window.h"
 #include "PerspectiveCamera.h"
-#include <array>
+#include "../OpenGL/UniformBuffer.h"
 namespace Core {
 
 	Mesh* Renderer::CubeMesh;
@@ -14,15 +14,18 @@ namespace Core {
 	std::unique_ptr<ShaderProgram> Renderer::EntityShader;
 	std::unique_ptr<ShaderProgram> Renderer::LightShader;
 	glm::mat4 Renderer::ProjMatrix;
+	int UniformBuffer::maxUniformBufferBindings;
 
 	void Renderer::Init(Window* mainWindow)
 	{
 		CubeMesh = new Mesh(Mesh::CUBE_MESH);
 		PyramidMesh = new Mesh(Mesh::PYRAMID_MESH);
 		ProjMatrix = glm::perspective(glm::radians(70.0f), (float)mainWindow->Width / (float)mainWindow->Height, 0.1f, 100.0f);
-
-		EntityShader = std::make_unique<ShaderProgram>("src/Shaders/MultipleLightsVertex.glsl", "src/Shaders/MultipleLightsFragment.glsl");
-		LightShader = std::make_unique<ShaderProgram>("src/Shaders/LightSourceVertex.glsl", "src/Shaders/LightSourceFragment.glsl");
+    
+		EntityShader = std::make_unique<ShaderProgram>("../Core/src/OpenGL/Shaders/MultipleLightsVertex.glsl", "../Core/src/OpenGL/Shaders/MultipleLightsFragment.glsl");
+		LightShader = std::make_unique<ShaderProgram>("../Core/src/OpenGL/Shaders/LightSourceVertex.glsl", "../Core/src/OpenGL/Shaders/LightSourceFragment.glsl");
+		
+		glGetIntegerv(GL_MAX_UNIFORM_BUFFER_BINDINGS, &UniformBuffer::maxUniformBufferBindings);
 
 		EntityShader->Bind();
 		EntityShader->SetUniform1i("material.diffuse", 0);

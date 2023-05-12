@@ -3,7 +3,6 @@
 #include <unordered_map>
 #include "glm/glm.hpp"
 
-//typedef unsigned int GLenum;
 namespace Core {
 
 struct ShaderIDs
@@ -36,11 +35,15 @@ public:
 	void SetUniform1i(const std::string& Name, int32_t Value) const;
 	void SetUniform1iv(const std::string& Name, int Count, int* Value) const;
 
+
+int32_t GetUniformBindingPoint();
+
 	int GetUniformLocation(const std::string& Name) const;
 
 	uint32_t m_ProgramID;
 private:
 	ShaderIDs m_Shaders;
+std::array<uint32_t, Renderer::maxUniformBufferBindings> BindingPoints;
 	mutable std::unordered_map<std::string, int> m_UniformLacationCache;
 };
 
