@@ -90,6 +90,9 @@ namespace Core {
 		}
 		else
 		{
+			#ifdef _DEBUG
+				GLDebug::Init();
+			#endif
 			int attribs[] =
 			{
 				WGL_CONTEXT_MAJOR_VERSION_ARB, 4,
@@ -98,7 +101,7 @@ namespace Core {
 			};
 
 
-			this->hGLRC = wglCreateContextAttribsARB(this->hDC, this->hGLRC, attribs);
+			this->hGLRC = wglCreateContextAttribsARB(this->hDC, NULL, attribs);
 
 
 			wglMakeCurrent(0, 0);
@@ -107,9 +110,6 @@ namespace Core {
 
 			wglMakeCurrent(this->hDC, this->hGLRC);
 
-#ifdef _DEBUG
-			GLDebug::Init();
-#endif
 			glEnable(GL_BLEND);
 			glEnable(GL_DEPTH_TEST);
 			ShowWindow(this->hWnd, windowInfo.nShowCmd);

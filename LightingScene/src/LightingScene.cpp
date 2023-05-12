@@ -1,6 +1,5 @@
 #include "LightingScene.h"
 
-
 LightingScene::LightingScene(const Core::WindowInfo& windowInfo)
 	:Application(windowInfo)
 {
@@ -11,6 +10,7 @@ LightingScene::LightingScene(const Core::WindowInfo& windowInfo)
 	
 	dirLight = new DirectionalLight();
 	dirLight->Translate({ 2.0f, 0.0f, 1.0f });
+
 	
 	spotLight = new SpotLight();
 	spotLight->Translate({ 1.0f, 0.0f, 0.0f });
@@ -45,6 +45,8 @@ LightingScene::LightingScene(const Core::WindowInfo& windowInfo)
 LightingScene::~LightingScene()
 {
 	delete Camera;
+	delete ContainerTex;
+	delete ContainerSpec;
 }
 
 void LightingScene::onRender()

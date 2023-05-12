@@ -5,13 +5,13 @@
 
 namespace Core {
 
-struct WindowInfo {
+struct CORE_API WindowInfo {
 	HINSTANCE& hInstance;
 	int& nShowCmd;
 	const wchar_t* windowName;
 };
 
-class Window
+class CORE_API Window
 {
 public:
 	Window(const WindowInfo& windowInfo);

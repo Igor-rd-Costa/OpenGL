@@ -1401,6 +1401,6 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="src\aaa.txt" />
+    <Text Include="CMakeLists.txt" />
   </ItemGroup>
 </Project>

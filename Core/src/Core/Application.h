@@ -27,8 +27,7 @@ namespace Core
 	protected:
 		Application(const WindowInfo& windowInfo);
 		Window* GetWindow();
-		Texture* ContainerTex;
-		Texture* ContainerSpec;
+		
 	private:
 		static PerspectiveCamera* ActiveCamera;
 		std::unique_ptr<Window> m_Window;

@@ -21,12 +21,12 @@ namespace Core {
 		CubeMesh = new Mesh(Mesh::CUBE_MESH);
 		PyramidMesh = new Mesh(Mesh::PYRAMID_MESH);
 		ProjMatrix = glm::perspective(glm::radians(70.0f), (float)mainWindow->Width / (float)mainWindow->Height, 0.1f, 100.0f);
-
+    
 		EntityShader = std::make_unique<ShaderProgram>("../Core/src/OpenGL/Shaders/MultipleLightsVertex.glsl", "../Core/src/OpenGL/Shaders/MultipleLightsFragment.glsl");
 		LightShader = std::make_unique<ShaderProgram>("../Core/src/OpenGL/Shaders/LightSourceVertex.glsl", "../Core/src/OpenGL/Shaders/LightSourceFragment.glsl");
 		
 		glGetIntegerv(GL_MAX_UNIFORM_BUFFER_BINDINGS, &UniformBuffer::maxUniformBufferBindings);
-		
+
 		EntityShader->Bind();
 		EntityShader->SetUniform1i("material.diffuse", 0);
 		EntityShader->SetUniform1i("material.specular", 1);
@@ -44,7 +44,7 @@ namespace Core {
 			}
 			m_Primitives.clear();
 		}
-
+		
 		if (!m_Lights.empty()) {
 			for (Light* light : m_Lights) {
 				delete light;
