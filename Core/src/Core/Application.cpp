@@ -35,8 +35,6 @@ namespace Core
 	Application::~Application()
 	{
 		Renderer::Shutdown();
-		delete ContainerTex;
-		delete ContainerSpec;
 	}
 
 	void Application::Run(std::function<void()> onRender)

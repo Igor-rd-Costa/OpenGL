@@ -11,6 +11,8 @@ public:
 	void onRender() override;
 	void Render();
 private:
+	Core::Texture* ContainerTex;
+	Core::Texture* ContainerSpec;
 	Core::PerspectiveCamera* Camera;
 	Core::DirectionalLight* dirLight;
 	Core::PointLight* pointLight;

@@ -44,4 +44,7 @@
     <None Include="src\Shaders\MultipleLightsFragment.glsl" />
     <None Include="src\Shaders\MultipleLightsVertex.glsl" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="CMakeLists.txt" />
+  </ItemGroup>
 </Project>

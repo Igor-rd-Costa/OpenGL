@@ -481,7 +481,7 @@
     <Image Include="src\OpenGL\Entity\DefaultTexture.png" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="src\aaa.txt" />
+    <Text Include="CMakeLists.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

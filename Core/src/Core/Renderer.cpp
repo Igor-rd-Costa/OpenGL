@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Window.h"
 #include "PerspectiveCamera.h"
+#include <array>
 namespace Core {
 
 	Mesh* Renderer::CubeMesh;
@@ -20,8 +21,8 @@ namespace Core {
 		PyramidMesh = new Mesh(Mesh::PYRAMID_MESH);
 		ProjMatrix = glm::perspective(glm::radians(70.0f), (float)mainWindow->Width / (float)mainWindow->Height, 0.1f, 100.0f);
 
-		EntityShader = std::make_unique<ShaderProgram>("../Core/src/OpenGL/Shaders/MultipleLightsVertex.glsl", "../Core/src/OpenGL/Shaders/MultipleLightsFragment.glsl");
-		LightShader = std::make_unique<ShaderProgram>("../Core/src/OpenGL/Shaders/LightSourceVertex.glsl", "../Core/src/OpenGL/Shaders/LightSourceFragment.glsl");
+		EntityShader = std::make_unique<ShaderProgram>("src/Shaders/MultipleLightsVertex.glsl", "src/Shaders/MultipleLightsFragment.glsl");
+		LightShader = std::make_unique<ShaderProgram>("src/Shaders/LightSourceVertex.glsl", "src/Shaders/LightSourceFragment.glsl");
 
 		EntityShader->Bind();
 		EntityShader->SetUniform1i("material.diffuse", 0);
@@ -40,7 +41,7 @@ namespace Core {
 			}
 			m_Primitives.clear();
 		}
-
+		
 		if (!m_Lights.empty()) {
 			for (Light* light : m_Lights) {
 				delete light;

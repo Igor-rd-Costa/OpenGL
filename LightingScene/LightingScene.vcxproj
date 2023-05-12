@@ -44,8 +44,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)\bin\$(Platform)-$(Configuration)\$(ProjectName)\</OutDir>
-    <IntDir>$(SolutionDir)\bin-int\$(Platform)-$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Platform)-$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)bin-int\$(Platform)-$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)\bin\$(Platform)-$(Configuration)\$(ProjectName)\</OutDir>
@@ -66,7 +66,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>if not exist "$(OutDir)Shaders" mkdir "$(OutDir)Shaders"</Command>
+      <Command>if not exist "$(OutDir)src/Shaders" mkdir "$(OutDir)src/Shaders"
+if not exist "$(OutDir)src/Textures" mkdir "$(OutDir)src/Textures"
+xcopy "$(ProjectDir)src/Shaders/*" "$(OutDir)src/Shaders" /y
+xcopy "$(ProjectDir)src/Textures/*" "$(OutDir)src/Textures" /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -87,6 +90,12 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>if not exist "$(OutDir)src/Shaders" mkdir "$(OutDir)src/Shaders"
+if not exist "$(OutDir)src/Textures" mkdir "$(OutDir)src/Textures"
+xcopy "$(ProjectDir)src/Shaders/*" "$(OutDir)src/Shaders/" /y
+xcopy "$(ProjectDir)src/Textures/*" "$(OutDir)src/Textures/" /y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.vcxproj">
@@ -110,6 +119,9 @@
     <None Include="src\Shaders\LightSourceVertex.glsl" />
     <None Include="src\Shaders\MultipleLightsFragment.glsl" />
     <None Include="src\Shaders\MultipleLightsVertex.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="CMakeLists.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

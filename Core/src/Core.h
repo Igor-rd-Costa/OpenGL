@@ -9,5 +9,6 @@
 #include "Core/Cursor.h"
 #include "OpenGL/Entity/Texture.h"
 #include "OpenGL/ShaderProgram.h"
+#include "OpenGL/Entity/Texture.h"
 
 #include "Core/EntryPoint.h"

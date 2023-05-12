@@ -76,7 +76,7 @@ bool ShaderProgram::AttachShader(const std::string& Source, uint32_t ShaderType)
 			GLint LogSize = 0;
 			glGetShaderiv(ShaderID, GL_INFO_LOG_LENGTH, &LogSize);
 
-			std::vector<GLchar> ErrorLog(LogSize);
+			std::vector<GLchar> ErrorLog(5000);
 			glGetShaderInfoLog(ShaderID, LogSize, &LogSize, &ErrorLog[0]);
 
 			string = ErrorLog.data();
